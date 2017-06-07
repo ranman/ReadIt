@@ -93,7 +93,7 @@ def lambda_handler(event, content):
         Body=sound_data,
         Key=fname
     )
-    return {
+    item = {
         "url": url,
         "voice": voice,
         "text_md5": text_md5,
@@ -101,3 +101,5 @@ def lambda_handler(event, content):
         "ts": int(time.time()),
         "s3": "{}/{}/{}".format(s3.meta.endpoint_url, BUCKET_NAME, fname)
     }
+    ddb.put_item(Item=item)
+    return item
