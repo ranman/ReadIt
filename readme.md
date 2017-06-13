@@ -4,7 +4,9 @@ Grab static ffmpeg from john van sickle site
 
 Build with:
 
-`./build.sh readit.zip ffmpeg readit.py`
+`docker build -t readit-build .`
+
+`docker run -t -v $(pwd):/app readit-build ./build.sh readit.zip ffmpeg readit.py`
 
 
 upload to lambda
